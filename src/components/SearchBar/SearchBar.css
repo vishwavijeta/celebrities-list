@@ -1,0 +1,28 @@
+.search_bar {
+    border: 1px solid darkgray;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    width: 476px;
+    height: 32px;
+    height: 32px;
+    margin-top: 24px;
+}
+
+button.header_search_button {
+    background: none;
+    border: none;
+    margin-top: 5px;
+    margin-left: 5px;
+}
+
+input.header_search_input {
+    width: 100%;
+    font-size: medium;
+    border: none;
+}
+
+.header_search_input:focus-visible {
+    outline: none;
+    box-shadow: none;
+}
