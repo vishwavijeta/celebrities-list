@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useCallback  } from 'react';
 import data from './utils/celebrities.json';
 import SearchBar from './components/SearchBar/SearchBar';
 import CelebtitiesList from './components/CelebritiesList/CelebritiesList';
@@ -45,63 +45,61 @@ const App: React.FC = () => {
 
 
   // handle the expansion of the celebtity
-  const handleExapansion = (index: number) => {
-    if (allowEdit) return;
+  const handleExapansion = useCallback((index: number) => {
+    if (allowEdit !== null) return;
     setOpenIndex(index === openIndex ? null : index);
-  };
+  }, [allowEdit, openIndex]);
 
   // handle the edit of the celebtity
-  const handleEdit = (index: number) => {
+  const handleEdit = useCallback((index: number) => {
     setAllowEdit(index === allowEdit ? null : index);
-  };
+  }, [allowEdit]);
 
   // handle the delete of the celebtity
-  const handleDelete = (index: number) => {
+  const handleDelete = useCallback((index: number) => {
     const newCelebtities = [...celebtities];
     newCelebtities.splice(index, 1);
     setCelebtities(newCelebtities);
-  };
+  }, [celebtities]);
 
   // handle the delete click on celebrity
-  const handleDeleteClick = (index: number) => {
+  const handleDeleteClick = useCallback((index: number) => {
     setDeleteIndex(index);
     setIsDialogOpen(true);
-  };
+  }, []);
 
   // handle the dialog close
-  const handleDialogClose = (action: 'cancel' | 'delete') => {
+  const handleDialogClose = useCallback((action: 'cancel' | 'delete') => {
     setIsDialogOpen(false);
     if (action === 'delete' && deleteIndex !== null) {
       handleDelete(deleteIndex);
     }
     setDeleteIndex(null);
-  };
+  }, [deleteIndex, handleDelete]);
 
   // handle the save of the celebtity
-  const handleSave = (index: number, updatedCelebtity: any) => {
-    // update age to dob before saving
+  const handleSave = useCallback((index: number, updatedCelebtity: any) => {
     updatedCelebtity.dob = calculateDOB(updatedCelebtity.dob);
     const newCelebtities = [...celebtities];
     newCelebtities[index] = { ...newCelebtities[index], ...updatedCelebtity };
     setCelebtities(newCelebtities);
     setAllowEdit(null);
-  };
+  }, [celebtities]);
 
   // handle the search of the celebtity
-  const handleSearch = (e: React.ChangeEvent<HTMLInputElement>) => {
-    const searchValue = e.target.value;
-    // search by first name and last name
-    const filteredCelebtities = data.filter((celebtity) => {
-      return celebtity.first.toLowerCase().includes(searchValue.toLowerCase()) ||
-        celebtity.last.toLowerCase().includes(searchValue.toLowerCase());
-    });
+  const handleSearch = useCallback((e: React.ChangeEvent<HTMLInputElement>) => {
+    const searchValue = e.target.value.toLowerCase();
+    const filteredCelebtities = data.filter((celebtity) => 
+      celebtity.first.toLowerCase().includes(searchValue) ||
+      celebtity.last.toLowerCase().includes(searchValue)
+    );
     setCelebtities(filteredCelebtities);
-  };
+  }, []);
 
   return (
     <>
       <div className="list-container">
-        < SearchBar handleSearch={handleSearch} />
+        <SearchBar handleSearch={handleSearch} />
         {celebtities.map((celebtity, index) => (
           <CelebtitiesList
             key={index}
