@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { memo } from 'react'
 import './SearchBar.css'
 
 interface SearchBarProps {
@@ -18,4 +18,4 @@ const SearchBar: React.FC<SearchBarProps> = ({ handleSearch }) => {
     )
 }
 
-export default SearchBar
+export default memo(SearchBar);

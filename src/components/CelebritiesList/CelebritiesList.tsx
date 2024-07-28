@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, memo  } from 'react';
 import { RxCrossCircled } from "react-icons/rx";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { MdOutlineExpandMore } from "react-icons/md";
@@ -8,7 +8,6 @@ import { MdOutlineExpandLess } from "react-icons/md";
 import './CelebritiesList.css';
 
 interface CelebritiesListProps {
-    key: number;
     isOpen: boolean;
     allowEdit: boolean;
     handleExapansion: () => void;
@@ -25,7 +24,7 @@ interface CelebritiesListProps {
 }
 
 const CelebritiesList: React.FC<CelebritiesListProps> = ({
-    key, first, last, dob, gender, country, picture, description,
+    first, last, dob, gender, country, picture, description,
     isOpen, handleExapansion, allowEdit, onEdit, handleDelete, onSave }) => {
 
     // declare a state variable to store the editable celebtity
@@ -60,7 +59,7 @@ const CelebritiesList: React.FC<CelebritiesListProps> = ({
     return (
         <>
             {!isOpen ? (
-                <div className="lists" key={key}>
+                <div className="lists">
                     <div className='list-open-input'>
                         <div className="list-open-icon">
                             <img src={picture} alt="icon" />
@@ -72,7 +71,7 @@ const CelebritiesList: React.FC<CelebritiesListProps> = ({
                     </div>
                 </div>
             ) : (
-                <div className="list-open" key={key}>
+                <div className="list-open">
                     <div className="list-open-header">
                         <div className='list-open-input'>
                             <div className="list-open-icon">
@@ -170,4 +169,4 @@ const CelebritiesList: React.FC<CelebritiesListProps> = ({
     );
 };
 
-export default CelebritiesList;
+export default memo(CelebritiesList);
