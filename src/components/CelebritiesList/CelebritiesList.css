@@ -162,3 +162,19 @@ input[type=number] {
     cursor: pointer;
     color: red;
 }
+
+@media (max-width: 521px) {
+
+    .lists,
+    .list-open {
+        width: 95%;
+    }
+
+    .list-open-content-info input {
+        width: 100px;
+    }
+
+    .list-open-content-info select {
+        width: 115px;
+    }
+}

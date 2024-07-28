@@ -3,3 +3,9 @@
   flex-direction: column;
   align-items: center;
 }
+
+@media (max-width: 521px) {
+  .list-container {
+    margin: 0 10px;
+  }
+}

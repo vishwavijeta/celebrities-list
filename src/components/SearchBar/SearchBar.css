@@ -26,3 +26,9 @@ input.header_search_input {
     outline: none;
     box-shadow: none;
 }
+
+@media (max-width: 521px) {
+    .search_bar {
+        width: 95%;
+    }
+}
