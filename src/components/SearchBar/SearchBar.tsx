@@ -1,4 +1,5 @@
 import React from 'react'
+import './SearchBar.css'
 
 interface SearchBarProps {
     handleSearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
