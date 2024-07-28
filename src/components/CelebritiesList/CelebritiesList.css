@@ -74,7 +74,7 @@ label {
 
 .list-open-content {
     margin: 16px 0;
-    height: 200px;
+    height: 220px;
 }
 
 /* Chrome, Safari, Edge, Opera */
@@ -137,6 +137,11 @@ input[type=number] {
 #country-text,
 #description-text {
     margin-top: 10px;
+}
+
+#description-text {
+    height: 135px;
+    overflow: scroll;
 }
 
 #gender-text {
