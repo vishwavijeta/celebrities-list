@@ -1,4 +1,4 @@
-import React, { useState, useEffect, memo  } from 'react';
+import React, { useState, useEffect, memo } from 'react';
 import { RxCrossCircled } from "react-icons/rx";
 import { IoCheckmarkCircleOutline } from "react-icons/io5";
 import { MdOutlineExpandMore } from "react-icons/md";
@@ -52,6 +52,15 @@ const CelebritiesList: React.FC<CelebritiesListProps> = ({
     // handle save event
     // call the onSave prop with the updated celebtity
     const handleSave = () => {
+        // destructure the editable celebtity
+        const { first, last, dob, gender, country, description } = editableCelebtity;
+
+        // check if all fields are filled
+        // if not, show an alert
+        if (!first || !last || !dob || !gender || !country || !description) {
+            alert("All fields are required. Please fill in all fields.");
+            return;
+        }
         onSave(editableCelebtity);
         onEdit();
     };
