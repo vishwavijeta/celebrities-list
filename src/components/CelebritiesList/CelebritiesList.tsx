@@ -38,7 +38,7 @@ const CelebritiesList: React.FC<CelebritiesListProps> = ({
         if (!allowEdit) {
             setEditableCelebtity({ first, last, dob, gender, country, description });
         }
-    }, [allowEdit]);
+    }, [allowEdit, first, last ]);
 
     // handle input change event
     // update the editable celebtity state when the input value changes
